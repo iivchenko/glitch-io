@@ -5,7 +5,7 @@ namespace Profile.Application.UserProfiles.Queries;
 
 public sealed class UserProfileDto : IMapFrom<UserProfile>
 {
-    public string? UserName { get; }
+    public string? Name { get; init; }
 
-    public string? Description { get; }
+    public string? Description { get; init; }
 }
