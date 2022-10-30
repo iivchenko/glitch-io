@@ -5,7 +5,7 @@ Inspired by [itch.io](https://itch.io/) - primitive social network app to share 
 # Getting Started
 
 # Tech Stack
-* .net 6
+* .net 7
 * azure sql 
 * azure storaga account (file storage; table storage)
 
