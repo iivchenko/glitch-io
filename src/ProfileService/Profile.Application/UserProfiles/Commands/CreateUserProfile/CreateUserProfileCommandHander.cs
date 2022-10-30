@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Profile.Application.Common.Interfaces;
+﻿using Profile.Application.Common.Interfaces;
 using Profile.Domain.UserProfileAggregate;
 
 namespace Profile.Application.UserProfiles.Commands.CreateUserProfile;

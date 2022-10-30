@@ -6,7 +6,7 @@ public sealed class UserProfile : Entity, IAggregateRoot
 {
     private UserProfile()
     {
-        //Name = UserProfileName.Dummy; // TODO: Think on better solution
+        Name = UserProfileName.Dummy; // TODO: Think on better solution
     }
 
     public UserProfileName Name { get; private set; }

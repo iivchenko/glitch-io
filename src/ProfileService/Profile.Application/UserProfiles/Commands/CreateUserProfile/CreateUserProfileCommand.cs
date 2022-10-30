@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Profile.Application.UserProfiles.Commands.CreateUserProfile;
+﻿namespace Profile.Application.UserProfiles.Commands.CreateUserProfile;
 
 public sealed class CreateUserProfileCommand : IRequest<Guid>
 {

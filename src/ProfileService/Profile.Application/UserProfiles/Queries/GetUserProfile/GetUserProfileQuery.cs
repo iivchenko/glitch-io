@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Profile.Application.UserProfiles.Queries.GetUserProfile;
+﻿namespace Profile.Application.UserProfiles.Queries.GetUserProfile;
 
 public sealed class GetUserProfileQuery : IRequest<UserProfileDto>
 {

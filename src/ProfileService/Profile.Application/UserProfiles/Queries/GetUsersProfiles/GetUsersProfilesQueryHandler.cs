@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using MediatR;
+﻿using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Profile.Application.Common.Interfaces;
-using Profile.Domain.UserProfileAggregate;
 
 namespace Profile.Application.UserProfiles.Queries.GetUsersProfiles;
 
