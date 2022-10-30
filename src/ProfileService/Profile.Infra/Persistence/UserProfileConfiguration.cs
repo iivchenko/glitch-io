@@ -10,11 +10,11 @@ public sealed class UserProfileConfiguration : IEntityTypeConfiguration<UserProf
     {
         builder.ToTable("profiles");
 
-        builder.Property(x => x.Name)
-            .HasMaxLength(20)
+        builder.OwnsOne(x => x.Name).Property(x => x.Value)
+            .HasMaxLength(UserProfileConstraints.NameMaxLength)
             .IsRequired();
 
         builder.Property(x => x.Description)
-            .HasMaxLength(500);
+            .HasMaxLength(UserProfileConstraints.DescriptionMaxLength);
     }
 }

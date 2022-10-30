@@ -10,4 +10,10 @@ public sealed class UserProfileDto : IMapFrom<UserProfile>
     public string? Name { get; init; }
 
     public string? Description { get; init; }
+
+    public void Mapping(AutoMapper.Profile profile)
+    {
+        profile.CreateMap<UserProfile, UserProfileDto>()
+          .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Name.Value));
+    }
 }

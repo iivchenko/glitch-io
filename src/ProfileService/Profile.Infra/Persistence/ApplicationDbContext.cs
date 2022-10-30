@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Profile.Application.Common.Interfaces;
 using MediatR;
 using Profile.Domain.UserProfileAggregate;
 using Profile.Domain.Common;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Profile.Infra.Persistence
 {

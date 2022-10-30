@@ -2,6 +2,7 @@
 
 namespace Profile.Domain.Common;
 
+// TODO: Refactor to hide domain event interation
 public abstract class Entity
 {
     private readonly List<Event> _domainEvents = new();

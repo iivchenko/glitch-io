@@ -8,7 +8,7 @@ using Profile.Application.UserProfiles.Queries.GetUsersProfiles;
 namespace Profile.Api.Controllers;
 
 [ApiController]
-[Route("api/user-profiles")]
+[Route("api/v1/user-profiles")]
 public sealed class UserProfileController : ApiControllerBase
 {
     [HttpGet]

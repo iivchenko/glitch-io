@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Profile.Domain.UserProfileAggregate;
 
 namespace Profile.Application.UserProfiles.Commands.CreateUserProfile;
 
@@ -9,9 +10,9 @@ public class CreateUserProfileCommandValidator : AbstractValidator<CreateUserPro
         RuleFor(x => x.Name)
             .NotNull()
             .NotEmpty()
-            .MaximumLength(25);
+            .MaximumLength(UserProfileConstraints.NameMaxLength);
 
         RuleFor(x => x.Description)
-            .MaximumLength(5000);
+            .MaximumLength(UserProfileConstraints.DescriptionMaxLength);
     }
 }

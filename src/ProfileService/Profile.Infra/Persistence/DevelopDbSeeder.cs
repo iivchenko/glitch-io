@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Profile.Domain.UserProfileAggregate;
 
 namespace Profile.Infra.Persistence;
@@ -34,8 +33,8 @@ public sealed class DevelopDbSeeder
     {
         if (!_context.Profiles.Any())
         {
-            _context.Profiles.Add(UserProfile.Create("Ivan", "Cool guy!"));
-            _context.Profiles.Add(UserProfile.Create("Slava", "Cool girl!"));
+            _context.Profiles.Add(UserProfile.Create(UserProfileName.Create("Ivan"), "Cool guy!"));
+            _context.Profiles.Add(UserProfile.Create(UserProfileName.Create("Slava"), "Cool girl!"));
            
             await _context.SaveChangesAsync();
         }

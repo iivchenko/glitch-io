@@ -15,7 +15,7 @@ public sealed class CreateUserProfileCommandHander : IRequestHandler<CreateUserP
 
     public async Task<Guid> Handle(CreateUserProfileCommand request, CancellationToken cancellationToken)
     {
-        var profile = UserProfile.Create(request.Name, request.Description); 
+        var profile = UserProfile.Create(UserProfileName.Create(request.Name), request.Description); 
 
         _context.Profiles.Add(profile);
 
