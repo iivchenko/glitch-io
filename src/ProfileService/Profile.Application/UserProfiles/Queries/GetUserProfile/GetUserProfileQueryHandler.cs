@@ -21,7 +21,7 @@ public sealed class GetUserProfileQueryHandler : IRequestHandler<GetUserProfileQ
        
         if (profile == null)
         {
-            throw new Exception();
+            throw new Exception($"User profile with id {request.Id} does't exist!"); // TODO: Introduce not found exception
         }
 
         return _mapper.Map<UserProfileDto>(profile);

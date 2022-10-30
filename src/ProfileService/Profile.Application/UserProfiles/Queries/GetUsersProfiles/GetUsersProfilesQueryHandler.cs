@@ -22,6 +22,6 @@ public sealed class GetUsersProfilesQueryHandler : IRequestHandler<GetUsersProfi
                 .Skip(request.Skip)
                 .Take(request.Take)
                 .ProjectTo<UserProfileDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken); // TODO: Improve paginated situations here
+                .ToListAsync(cancellationToken);
     }
 }

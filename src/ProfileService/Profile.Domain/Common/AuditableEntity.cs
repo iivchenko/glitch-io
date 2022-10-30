@@ -1,5 +1,6 @@
 ﻿namespace Profile.Domain.Common;
 
+// TODO: Use it... may be
 public abstract class AuditableEntity : Entity
 {
     public DateTime Created { get; set; }

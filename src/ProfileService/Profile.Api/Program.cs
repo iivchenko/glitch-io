@@ -13,7 +13,7 @@ builder.Services.AddApiServices();
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI(options => options.SwaggerEndpoint("v1/swagger.json", "User Profile API V1"));
+app.UseSwaggerUI(options => options.SwaggerEndpoint("v1/swagger.json", "User Profile API"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
