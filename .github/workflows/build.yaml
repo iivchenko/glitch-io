@@ -1,7 +1,7 @@
 name: Build
 
 on: push
-        
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,10 +24,10 @@ jobs:
     - name: Profile Service Artifacts
       uses: actions/upload-artifact@v1
       with:
-       name: ${{ format('profile-service-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
-       path: publish/profile-service
+        name: ${{ format('profile-service-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
+        path: publish/profile-service
      - name: Client Web App Artifacts
-      uses: actions/upload-artifact@v1
-      with:
-       name: ${{ format('client-web-app-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
-       path: publish/client-web-app
+       uses: actions/upload-artifact@v1
+       with:
+         name: ${{ format('client-web-app-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
+         path: publish/client-web-app
