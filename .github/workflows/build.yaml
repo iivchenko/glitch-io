@@ -14,8 +14,8 @@ jobs:
         with:
           path: ./.version
       - name: Setup .NET Core
-        run:| 
-          winget install Microsoft.DotNet.SDK.Preview 7.0.100-rc.2.22477.23
+        run: |
+          winget install "Microsoft.DotNet.SDK.Preview 7.0.100-rc.2.22477.23"
       - name: Publish Profile Service
         run: dotnet publish ./src/ProfileService/Profile.Api/Profile.Api.csproj --configuration release --self-contained true -o ./publish/profile-service
       - name: Publish Client Web App
