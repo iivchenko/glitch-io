@@ -1,0 +1,44 @@
+﻿@page "/profiles/edit/{id:guid}"
+
+@using ClientWeb.Clients.ProfileService;
+
+@inject IProfileClient profileClient;
+
+<h3>Edit Profile</h3>
+
+@if (profile == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" @bind="profile.Name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="descripton" placeholder="Some text" @bind="profile.Description">
+        </div>
+        <button type="submit" class="btn btn-primary" @onclick="Submit">Submit</button>
+    </form>
+}
+
+@code {
+
+    private UserProfileDto? profile;
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        profile = await profileClient.Get(Id);
+    }
+
+    private async Task Submit()
+    {
+        await profileClient.Put(Id, new UpdateUserProfileCommand { UserName = profile.Name, UserDescription = profile.Description });
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace Profile.Domain.UserProfileAggregate;
 
+// TODO: Cover with unit tests
 public sealed class UserProfile : Entity, IAggregateRoot
 {
     private UserProfile()
@@ -12,6 +13,16 @@ public sealed class UserProfile : Entity, IAggregateRoot
     public UserProfileName Name { get; private set; }
 
     public string? Description { get; private set; }
+
+    public void UpdateName(string name)
+    {
+        Name = UserProfileName.Create(name);
+    }
+
+    public void UpdateDescription(string? description)
+    {
+        Description = description;
+    }
 
     public static UserProfile Create(UserProfileName name, string? descrtiption)
     {

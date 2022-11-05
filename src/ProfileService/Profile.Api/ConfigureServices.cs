@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
-using Swashbuckle;
+﻿using Microsoft.OpenApi.Models;
 
 namespace Profile.Api;
 
@@ -8,6 +6,13 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddApiServices(this IServiceCollection services)
     {
+        services.AddCors(optons => optons.AddDefaultPolicy(builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        }));
+
         services.AddHttpContextAccessor();
 
         services.AddHealthChecks(); // TODO: add proper health check to DB as well

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Profile.Application.UserProfiles.Commands.CreateUserProfile;
 using Profile.Application.UserProfiles.Commands.DeleteUserProfile;
+using Profile.Application.UserProfiles.Commands.UpdateUserProfile;
 using Profile.Application.UserProfiles.Queries;
 using Profile.Application.UserProfiles.Queries.GetUserProfile;
 using Profile.Application.UserProfiles.Queries.GetUsersProfiles;
@@ -27,6 +28,13 @@ public sealed class UserProfileController : ApiControllerBase
     public async Task<Guid> Post([FromBody] CreateUserProfileCommand command)
     {
         return await Mediator.Send(command);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task Put(Guid id, [FromBody] UpdateUserProfileCommand command)
+    {
+        command.Id = id;
+        await Mediator.Send(command);
     }
 
     [HttpDelete("{id:guid}")]

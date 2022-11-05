@@ -36,6 +36,7 @@ app.UseHttpsRedirection();
 // TODO: Add authorization later
 //app.UseAuthorization();
 
+app.UseCors();
 app.MapControllers();
 
 app.Run();

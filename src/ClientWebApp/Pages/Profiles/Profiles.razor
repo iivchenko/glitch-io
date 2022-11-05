@@ -1,0 +1,63 @@
+﻿@page "/profiles"
+
+@using ClientWeb.Clients.ProfileService;
+
+@inject IProfileClient profileClient
+@inject NavigationManager nav
+
+
+<h3>Profiles</h3>
+
+@if (profiles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var profile in profiles)
+            {
+                <tr>
+                    <td>@profile.Name</td>
+                    <td>@profile.Description</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="async () => await Delete(profile)">Delete</button>
+                        <button class="btn btn-primary" @onclick="async () => await Edit(profile)">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <NavLink class="btn btn-primary" href="profiles/create">
+        New
+    </NavLink>
+}
+
+@code {
+    private List<UserProfileDto>? profiles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        profiles = (await profileClient.Get()).ToList();
+    }
+
+    private async Task Delete(UserProfileDto profile)
+    {
+        await profileClient.Delete(profile.Id);
+
+        profiles.Remove(profile);
+    }
+
+    private async Task Edit(UserProfileDto profile)
+    {
+        nav.NavigateTo("/profiles/edit/" + profile.Id);
+    }
+}

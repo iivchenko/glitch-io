@@ -1,0 +1,31 @@
+﻿@page "/profiles/create"
+
+@using ClientWeb.Clients.ProfileService;
+
+@inject IProfileClient profileClient;
+
+<h3>Create New Profile</h3>
+
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" @bind="name">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="descripton" placeholder="Some text" @bind="description">
+    </div>
+    <button type="submit" class="btn btn-primary" @onclick="Submit">Submit</button>
+</form>
+
+@code {
+    private UserProfileDto profile;
+
+    private string? name;
+    private string? description;
+
+    private async Task Submit()
+    {
+        await profileClient.Post(new CreateUserProfileCommand { Name = name, Description = description });
+    }
+}
