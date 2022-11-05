@@ -7,4 +7,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2   
+      - name: Read version
+        id: version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./.version
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.x
+      - name: Publish Profile Service
+        run: dotnet publish ./src/ProfileService/Profile.Api/Profile.Api.csproj --configuration release --self-contained true -o ./publish/profile-service
+      - name: Publish Client Web App
+        run: dotnet publish ./src/ClientWebApp/ClientWeb.csproj --configuration release --self-contained true -o ./publish/client-web-app
+      - name: Profile Service Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ format('profile-service-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
+          path: publish/profile-service
+      - name: Client Web App Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ format('client-web-app-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
+          path: publish/client-web-app
