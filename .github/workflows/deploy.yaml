@@ -35,4 +35,4 @@ jobs:
       with:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
-        parameters: tenantId=${{ github.event.inputs.tenantId }} sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
+        parameters: sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
