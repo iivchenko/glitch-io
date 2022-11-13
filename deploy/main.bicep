@@ -36,9 +36,14 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 }
 
 resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
-  name: '${appName}-profile-app'
+  name: '${appName}-profile-service'
   location: location
   properties: {
     serverFarmId: appServicePlan.id
   }
+}
+
+resource clientWebApp 'Microsoft.Web/staticSites@2021-01-01' = {
+  name: '${appName}-client-web'
+  location: location
 }
