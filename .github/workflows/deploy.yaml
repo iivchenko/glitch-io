@@ -31,12 +31,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
+      name: Checkout
     
     - uses: azure/login@v1
+      name: Azure Login
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
     - uses: azure/arm-deploy@v1
+      name: Azure infrastructure
       with:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep

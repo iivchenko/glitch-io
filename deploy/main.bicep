@@ -26,6 +26,17 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   }
 }
 
+resource sqlServerAdministrator 'Microsoft.Sql/servers/administrators@2022-05-01-preview' = {
+  name: 'ActiveDirectory'
+  parent: sqlServer
+  properties: {
+    administratorType: 'ActiveDirectory'
+    login: sqlServerAdmin
+    sid: sqlServerAdminSid
+    tenantId: tenantId
+  }
+}
+
 resource profileDb 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
   name: '${appName}-profile-db'
   location: location
