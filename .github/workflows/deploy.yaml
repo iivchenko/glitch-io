@@ -36,3 +36,10 @@ jobs:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
         parameters: sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
+    - name: Publish Profile Service
+      run: dotnet publish ./src/ProfileService/Profile.Api/Profile.Api.csproj --configuration release -o ./publish/profile-service
+    - name: Deploy Profile Service
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: glitchio-profile-service
+        package: ./publish/profile-service
