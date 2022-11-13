@@ -36,6 +36,10 @@ jobs:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
         parameters: sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
     - name: Publish Profile Service
       run: dotnet publish ./src/ProfileService/Profile.Api/Profile.Api.csproj --configuration release -o ./publish/profile-service
     - name: Deploy Profile Service

@@ -5,7 +5,7 @@ param sqlAdminPass string
 var appName = 'glitchio'
 
 resource sqlServer 'Microsoft.Sql/servers@2014-04-01' ={
-  name: '${appName}-sql-server'
+  name: '${appName}-sql-server-2'
   location: location
   properties: {
     administratorLogin: sqlAdmin
