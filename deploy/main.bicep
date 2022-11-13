@@ -42,5 +42,3 @@ resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
     serverFarmId: appServicePlan.id
   }
 }
-
-res-web
