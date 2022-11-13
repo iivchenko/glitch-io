@@ -24,3 +24,23 @@ resource profileDb 'Microsoft.Sql/servers/databases@2014-04-01' = {
     requestedServiceObjectiveName: 'Basic'
   }
 }
+
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
+  name: '${appName}-plan'
+  location: location
+  kind: 'linux'
+  sku: {    
+    name: 'F1'
+    capacity: 1
+  }
+}
+
+resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
+  name: '${appName}-profile-app'
+  location: location
+  properties: {
+    serverFarmId: appServicePlan.id
+  }
+}
+
+res-web
