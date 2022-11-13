@@ -1,0 +1,39 @@
+name: Deploy to Azure
+
+on: 
+  workflow_dispatch:
+    inputs:
+      resourceGroup:
+        description: 'Name of the target Azure resource group'
+        required: true
+        default: 'glitchio'
+      slqAdmin:
+        description: 'Managed idendity for the sql server admin'     
+        required: true
+        default: 'iivchenko@suitsupply.com'
+      slqAdminSid:
+        description: 'Managed idendity for the sql server admin'     
+        required: true
+        default: 'ee98ce5b-8664-4361-af7a-05d56476ecca'
+      tenantId:
+        description: 'Tenant'     
+        required: true
+        default: 'fbe43f29-18b2-46ca-a741-bcc4672ba19c'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@main
+    
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - uses: azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ github.event.inputs.resourceGroup }}
+        template: ./deploy/main.bicep
+        parameters: tenantId=${{ github.event.inputs.tenantId }} sqlServerAdmin=${{ github.event.inputs.sqlAdmin }} sqlServerAdminSid=${{ github.event.inputs.slqAdminSid }}
