@@ -1,6 +1,7 @@
 param location string = resourceGroup().location
 param sqlServerAdmin string
 param sqlServerAdminSid string
+param administratorLogin string
 param tenantId string
 
 var appName = 'glitchio'
@@ -9,6 +10,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   name: '${appName}-sql-server'
   location: location
   properties: {
+    administratorLogin: administratorLogin
     administrators: {
       administratorType: 'ActiveDirectory'
       azureADOnlyAuthentication: true
