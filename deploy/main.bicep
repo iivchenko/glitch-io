@@ -46,4 +46,12 @@ resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
 resource clientWebApp 'Microsoft.Web/staticSites@2021-01-01' = {
   name: '${appName}-client-web'
   location: location
+  sku:{
+    name: 'Free'
+    tier: 'Free'
+  }
+  properties: {
+    stagingEnvironmentPolicy: 'Enabled'
+    allowConfigFileUpdates: true
+  }
 }
