@@ -7,22 +7,14 @@ on:
         description: 'Name of the target Azure resource group'
         required: true
         default: 'glitchio'
-      administratorLogin:
-        description: 'Have no idea yet'
+      sqlAdmin:
+        description: 'Name for the sql server administrator'
         required: true
-        default: 'CloudSA20974cbf'
-      slqAdmin:
-        description: 'Managed idendity for the sql server admin'     
+        default: 'sqladmin'
+      slqAdminPass:
+        description: 'Password for the sql admin server'     
         required: true
-        default: 'iivchenko@suitsupply.com'
-      slqAdminSid:
-        description: 'Managed idendity for the sql server admin'     
-        required: true
-        default: 'ee98ce5b-8664-4361-af7a-05d56476ecca'
-      tenantId:
-        description: 'Tenant'     
-        required: true
-        default: 'fbe43f29-18b2-46ca-a741-bcc4672ba19c'
+        default: '123asdQ!'
 
 jobs:
   deploy:
@@ -43,4 +35,4 @@ jobs:
       with:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
-        parameters: tenantId=${{ github.event.inputs.tenantId }} sqlServerAdmin=${{ github.event.inputs.sqlAdmin }} sqlServerAdminSid=${{ github.event.inputs.slqAdminSid }} administratorLogin=${{ github.event.inputs.administratorLogin }}
+        parameters: tenantId=${{ github.event.inputs.tenantId }} sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
