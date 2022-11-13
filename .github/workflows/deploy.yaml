@@ -36,11 +36,3 @@ jobs:
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
         parameters: sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
-    - uses: Azure/static-web-apps-deploy@v1
-      name: Deploy Client Web App
-      with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_FLOWER_0CF331703 }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        action: "upload"          
-        app_location: "src/ClientWebApp"
-        output_location: "wwwroot"
