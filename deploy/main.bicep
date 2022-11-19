@@ -2,6 +2,9 @@ param location string = resourceGroup().location
 param sqlAdmin string
 param sqlAdminPass string
 
+@allowed(['dev', 'prd'])
+param env string  = 'prd'
+
 var appName = 'glitchio'
 
 resource sqlServer 'Microsoft.Sql/servers@2014-04-01' ={
@@ -41,11 +44,17 @@ resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
+      appSettings:[
+        {
+          name: 'ASPNETCORE_ENVIRONMENT'
+          value: env
+        }
+      ]
       connectionStrings: [
         {
           name: 'DefaultConnection'
           type: 'SQLAzure'
-          connectionString: 'Server=${sqlServer.name},1433;Initial Catalog=${profileDb.name};Persist Security Info=False;User ID=${sqlAdmin};Password=${sqlAdminPass};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+          connectionString: 'Server=tcp:${sqlServer.name}${environment().suffixes.sqlServerHostname},1433;Initial Catalog=${profileDb.name};Persist Security Info=False;User ID=${sqlAdmin};Password=${sqlAdminPass};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
         }
       ]
     }
