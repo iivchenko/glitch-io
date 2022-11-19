@@ -40,6 +40,15 @@ resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
   location: location
   properties: {
     serverFarmId: appServicePlan.id
+    siteConfig: {
+      connectionStrings: [
+        {
+          name: 'DefaultConnection'
+          type: 'SQLAzure'
+          connectionString: 'Server=${sqlServer.name},1433;Initial Catalog=${profileDb.name};Persist Security Info=False;User ID=${sqlAdmin};Password=${sqlAdminPass};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+        }
+      ]
+    }
   }
 }
 

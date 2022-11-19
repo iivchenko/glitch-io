@@ -15,16 +15,18 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(options => options.SwaggerEndpoint("v1/swagger.json", "User Profile API"));
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    // TODO: Implement develop seed later
-    //app.UseDeveloperExceptionPage();
-    //app.UseMigrationsEndPoint();
+    var context = app.Services.GetRequiredService<ApplicationDbContext>();
+    await context.Database.EnsureCreatedAsync();
 
-    // Initialise and seed database
-    using (var scope = app.Services.CreateScope())
+    if (app.Environment.IsDevelopment())
     {
+        // TODO: Implement develop seed later
+        //app.UseDeveloperExceptionPage();
+        //app.UseMigrationsEndPoint();
+
+        // Initialise and seed database
         var initialiser = scope.ServiceProvider.GetRequiredService<DevelopDbSeeder>();
         await initialiser.SeedAsync();
     }
