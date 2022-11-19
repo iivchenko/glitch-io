@@ -24,7 +24,11 @@ jobs:
     steps:
     - uses: actions/checkout@main
       name: Checkout
-    
+    - name: Read version
+      id: version
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./.version
     - uses: azure/login@v1
       name: Azure Login
       with:
@@ -33,6 +37,7 @@ jobs:
     - uses: azure/arm-deploy@v1
       name: Azure infrastructure
       with:
+        deploymentName: ${{ format('main-v{0}.{1}', steps.version.outputs.content, github.run_number) }}
         resourceGroupName: ${{ github.event.inputs.resourceGroup }}
         template: ./deploy/main.bicep
         parameters: sqlAdmin=${{ github.event.inputs.sqlAdmin }} sqlAdminPass=${{ github.event.inputs.slqAdminPass }}
