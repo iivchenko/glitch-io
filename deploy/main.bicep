@@ -78,7 +78,7 @@ resource clientWebApp 'Microsoft.Web/staticSites@2021-01-01' = {
     name: 'Free'
     tier: 'Free'
   }
-  properties: {   
+  properties: {
     stagingEnvironmentPolicy: 'Enabled'
     allowConfigFileUpdates: true
   }
