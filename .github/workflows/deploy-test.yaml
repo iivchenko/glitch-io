@@ -45,4 +45,5 @@ jobs:
         action: "upload"
         skip_deploy_on_missing_secrets: true
         skip_app_build: true
+        app_location: ./publish/client-web/wwwroot
         output_location: ./publish/client-web/wwwroot
