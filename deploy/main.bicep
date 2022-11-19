@@ -8,7 +8,7 @@ param env string  = 'prd'
 var appName = 'glitchio'
 
 resource sqlServer 'Microsoft.Sql/servers@2014-04-01' ={
-  name: '${appName}-sql-server-2'
+  name: '${appName}-sql-server'
   location: location
   properties: {
     administratorLogin: sqlAdmin
