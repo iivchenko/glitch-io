@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: Deploy to Azure - Test
 
 on: 
   workflow_dispatch:
@@ -43,6 +43,6 @@ jobs:
       uses: Azure/static-web-apps-deploy@v1
       with:
         action: "upload"
-        app_location: src/ClientWebApp
         skip_deploy_on_missing_secrets: true
+        skip_app_build: true
         output_location: ./publish/client-web
