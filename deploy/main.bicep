@@ -16,6 +16,15 @@ resource sqlServer 'Microsoft.Sql/servers@2014-04-01' ={
   }
 }
 
+resource sqlServerFirewalRule 'Microsoft.Sql/servers/firewallRules@2022-05-01-preview' = {
+  parent: sqlServer
+  name: 'AllowAllWindowsAzureIps'
+  properties: {
+    startIpAddress: '0.0.0.0'
+    endIpAddress: '0.0.0.0'
+  }
+}
+
 resource profileDb 'Microsoft.Sql/servers/databases@2014-04-01' = {
   parent: sqlServer
   name: '${appName}-profile-db'
