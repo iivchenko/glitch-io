@@ -8,6 +8,6 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddRestEaseClient<IProfileClient>("https://localhost:7112");
+builder.Services.AddRestEaseClient<IProfileClient>(builder.Configuration["Services:ProfileServiceUrl"]);
 
 await builder.Build().RunAsync();

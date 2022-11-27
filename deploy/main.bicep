@@ -81,6 +81,10 @@ resource clietnWebApp 'Microsoft.Web/sites@2021-01-15' = {
           name: 'ASPNETCORE_ENVIRONMENT'
           value: env
         }
+        {
+          name: 'Services:ProfileServiceUrl'
+          value: 'https://${profileApp.properties.defaultHostName}'
+        }
       ]
     }
   }
