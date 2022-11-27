@@ -42,7 +42,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   location: location
   kind: 'linux'
   sku: {    
-    name: 'F1'
+    name: 'B1'
     capacity: 1
   }
 }
