@@ -78,6 +78,8 @@ resource clietnWebApp 'Microsoft.Web/sites@2021-01-15' = {
     siteConfig: {
       appSettings:[
         {
+          // Blazor WASM has a but with env variables so that soluton will not work for now.
+          // https://github.com/dotnet/aspnetcore/issues/28573
           name: 'ASPNETCORE_ENVIRONMENT'
           value: env
         }
