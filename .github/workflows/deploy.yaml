@@ -3,6 +3,10 @@ name: Deploy to Azure
 on: 
   workflow_dispatch:
     inputs:
+      azureCredentials: 
+        description: 'The name of the secret to login to Azure'
+        required: true
+        default: 'SUSU_AZURE_CREDENTIALS'
       resourceGroup:
         description: 'Name of the target Azure resource group'
         required: true
@@ -32,7 +36,7 @@ jobs:
     - uses: azure/login@v1
       name: Azure Login
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets[github.event.inputs.azureCredentials] }}
         
     - uses: azure/arm-deploy@v1
       name: Azure infrastructure
