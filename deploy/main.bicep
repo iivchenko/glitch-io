@@ -70,16 +70,18 @@ resource profileApp 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
-resource clientWebApp 'Microsoft.Web/staticSites@2021-01-01' = {
-  name: '${appName}-client-web'
+resource clietnWebApp 'Microsoft.Web/sites@2021-01-15' = {
+  name: '${appName}-client-webapp'
   location: location
-  
-  sku:{
-    name: 'Free'
-    tier: 'Free'
-  }
   properties: {
-    stagingEnvironmentPolicy: 'Enabled'
-    allowConfigFileUpdates: true
+    serverFarmId: appServicePlan.id
+    siteConfig: {
+      appSettings:[
+        {
+          name: 'ASPNETCORE_ENVIRONMENT'
+          value: env
+        }
+      ]
+    }
   }
 }

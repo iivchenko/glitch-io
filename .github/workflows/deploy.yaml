@@ -47,14 +47,15 @@ jobs:
         dotnet-version: 7.0.x
     - name: Publish Profile Service
       run: dotnet publish ./src/ProfileService/Profile.Api/Profile.Api.csproj --configuration release -o ./publish/profile-service
+    - name: Publish Client Web App
+      run: dotnet publish ./src/ClientWebApp/ClientWeb.csproj --configuration release -o ./publish/client-webapp
     - name: Deploy Profile Service
       uses: azure/webapps-deploy@v2
       with: 
         app-name: glitchio-profile-service
         package: ./publish/profile-service
-        
-    - name: Publish Client Web App
-      uses: Azure/static-web-apps-deploy@v1
-      with:
-        action: "upload"
-        app_location: "src/ClientWebApp" 
+    - name: Deploy Client Web App
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: glitchio-client-webapp
+        package: ./publish/client-webapp
